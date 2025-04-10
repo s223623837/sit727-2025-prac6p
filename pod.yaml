@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prac6p-pod
+  labels:
+    app: prac6p
+spec:
+  containers:
+  - name: prac6p
+    image: bids4u/prace6p
+    ports:
+    - containerPort: 3000

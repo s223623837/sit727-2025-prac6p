@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-node-app-deployment
+  labels:
+    app: my-node-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-node-app
+  template:
+    metadata:
+      labels:
+        app: my-node-app
+    spec:
+      containers:
+      - name: my-node-app
+        image: bids4u/prace6p:latest
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-node-app-service
+spec:
+  selector:
+    app: my-node-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+    nodePort: 30007
+  type: NodePort

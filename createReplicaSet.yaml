@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: prac6p-replicaset
+  labels:
+    app: prac6p
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prac6p
+  template:
+    metadata:
+      labels:
+        app: prac6p
+    spec:
+      containers:
+        - name: prac6p-container
+          image: bids4u/prace6p
+          ports:
+            - containerPort: 3000
